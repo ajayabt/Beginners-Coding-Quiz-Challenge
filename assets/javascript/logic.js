@@ -1,7 +1,4 @@
 
-//
-
-
 //Start button
 
 document.getElementById("start").addEventListener('click', function(){
@@ -14,5 +11,7 @@ document.getElementById("start").addEventListener('click', function(){
             clearInterval(timer);
         }
     }, 1000);
+    document.getElementById('start-screen').innerHTML = "";
+    displayQuestions(currentQuestionIndex);
 });
 
