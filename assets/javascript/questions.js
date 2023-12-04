@@ -23,24 +23,31 @@ const questionBank = [
     },
 ];
 
-//display question and choices function
 
+
+const endScreen = document.getElementById('end-screen');
+const questionContainer = document.getElementById('questions');
+const yourScore = document.getElementById('final-score')
+
+//display question and choices function
 let currentQuestionIndex = 0;
 
 const displayQuestions = function (i){
 
 const questionsObj = questionBank[i];
-const questionContainer = document.getElementById('questions')
 const questionTitle = document.getElementById('question-title');
 const choicesTitle = document.getElementById('choices');    
 const feedbackAnswer = document.getElementById('feedback');
 const timerElement = document.getElementById('time')
+;
+
 questionContainer.style.display = 'block';
+
 
 questionTitle.textContent = questionsObj.question;
 choicesTitle.innerHTML = "";
 
-questionsObj.choices.forEach((choice, choiceIndex)=>{
+questionsObj.choices.forEach((choice)=>{
     let choiceButton = document.createElement('button');
     choiceButton.textContent = choice;
 
@@ -49,17 +56,32 @@ questionsObj.choices.forEach((choice, choiceIndex)=>{
         feedbackAnswer.style.display ='block';
         feedbackAnswer.textContent = 'Correct!';
 
-        }else
+        }else if(timeRemaining>0)
         {
         feedbackAnswer.style.display ='block';
         feedbackAnswer.textContent = 'Wrong!'; 
         timeRemaining -= 10;
         timerElement.textContent = timeRemaining;
         }
+        else{
+            questionContainer.classList.add('hide');
+            yourScore.textContent = timeRemaining
+
+        }
         currentQuestionIndex++;
         if(currentQuestionIndex<questionBank.length){
             displayQuestions(currentQuestionIndex);
             
+        }
+        else{
+            clearInterval(timer);
+            questionContainer.style.display = 'none';
+            feedbackAnswer.style.display = 'none';
+            endScreen.style.display = 'block';
+            yourScore.textContent = timeRemaining;
+
+        
+
         }
     });
 
