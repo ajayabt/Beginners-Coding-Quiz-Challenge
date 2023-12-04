@@ -1,8 +1,8 @@
 
 //Start button
-
+let timeRemaining = 60;
 document.getElementById("start").addEventListener('click', function(){
-    let timeRemaining = "60";
+    
     let timer= setInterval(function(){
         if(timeRemaining>0){
             document.getElementById("time").textContent= timeRemaining--;

@@ -32,8 +32,9 @@ const displayQuestions = function (i){
 const questionsObj = questionBank[i];
 const questionContainer = document.getElementById('questions')
 const questionTitle = document.getElementById('question-title');
-const choicesTitle = document.getElementById('choices');
-
+const choicesTitle = document.getElementById('choices');    
+const feedbackAnswer = document.getElementById('feedback');
+const timerElement = document.getElementById('time')
 questionContainer.style.display = 'block';
 
 questionTitle.textContent = questionsObj.question;
@@ -42,13 +43,26 @@ choicesTitle.innerHTML = "";
 questionsObj.choices.forEach((choice, choiceIndex)=>{
     let choiceButton = document.createElement('button');
     choiceButton.textContent = choice;
+
     choiceButton.addEventListener('click', function(){
+        if(choice===questionsObj.answer){
+        feedbackAnswer.style.display ='block';
+        feedbackAnswer.textContent = 'Correct!';
+
+        }else
+        {
+        feedbackAnswer.style.display ='block';
+        feedbackAnswer.textContent = 'Wrong!'; 
+        timeRemaining -= 10;
+        timerElement.textContent = timeRemaining;
+        }
         currentQuestionIndex++;
         if(currentQuestionIndex<questionBank.length){
             displayQuestions(currentQuestionIndex);
             
         }
     });
+
     choicesTitle.appendChild(choiceButton);
     
 });
@@ -60,4 +74,3 @@ questionsObj.choices.forEach((choice, choiceIndex)=>{
   
   
     
-displayQuestions()
