@@ -29,7 +29,7 @@ submitScoreButton.addEventListener("click", function() {
     const score = yourScore.textContent;
 
     if (initials.length > 0 && initials.length <= 3) {
-        const newScore = { initials, score };
+        const newScore = {initials, score};
         const highScores = JSON.parse(localStorage.getItem("highScores")) || [];
         highScores.push(newScore);
         localStorage.setItem("highScores", JSON.stringify(highScores));
