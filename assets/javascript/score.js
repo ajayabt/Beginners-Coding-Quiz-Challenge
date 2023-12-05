@@ -15,3 +15,12 @@ const addHighScores = function(){
 }
 
 addHighScores()
+
+
+    const clearScores = document.getElementById('clear');
+    clearScores.addEventListener("click", function(){
+    const highScoresContainer = document.getElementById('highscores');
+    localStorage.removeItem('highScores');
+    highScoresContainer.innerHTML = "";
+    
+})
