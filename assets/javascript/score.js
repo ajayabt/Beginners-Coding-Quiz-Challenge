@@ -13,8 +13,9 @@ const addHighScores = function(){
     });
 
 }
-
 addHighScores()
+
+//clear highscores
 
 
     const clearScores = document.getElementById('clear');
