@@ -55,8 +55,9 @@ const questionsObj = questionBank[i];
 const questionTitle = document.getElementById('question-title');
 const choicesTitle = document.getElementById('choices');    
 const feedbackAnswer = document.getElementById('feedback');
-const timerElement = document.getElementById('time')
-;
+const timerElement = document.getElementById('time');
+const correctAnswerSound = new Audio("assets/sfx/correct.wav");
+const wrongAnswerSound = new Audio("assets/sfx/incorrect.wav");
 
 questionContainer.style.display = 'block';
 
@@ -71,11 +72,14 @@ questionsObj.choices.forEach((choice)=>{
     choiceButton.addEventListener('click', function(){
         if(choice===questionsObj.answer){
         feedbackAnswer.style.display ='block';
+        correctAnswerSound.play();
         feedbackAnswer.textContent = 'Correct!';
+
 
         }else if(timeRemaining>0)
         {
         feedbackAnswer.style.display ='block';
+        wrongAnswerSound.play();
         feedbackAnswer.textContent = 'Wrong!'; 
         timeRemaining -= 10;
         timerElement.textContent = timeRemaining;
